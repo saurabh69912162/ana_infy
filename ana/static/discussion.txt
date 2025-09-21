@@ -1,0 +1,785 @@
+User Persona
+
+👤 Persona 2: The Experienced Employee / Regular User
+	• Name: Anamika
+	• Role: Scrum Master & Project Manager
+	• Goal: Quickly raise tickets and track their resolution.
+	• Pain Points:
+		○ Frustrated if tickets are delayed or not updated.
+		○ Wants transparency in progress.
+	• System Needs:
+		○ Fast ticket creation with saved templates.
+		○ Real-time tracking & notifications for ticket status.
+		○ Search and history to view past requests.
+	• Key Quote: “I need a reliable system where I can log issues quickly and get updates without chasing people.”
+
+👤 Persona 1: The New Joiner / First-Time User
+	• Name: Harsh
+	• Role: Software Engineer Trainee
+	• Goal: Needs quick access to IT systems, project tools, and onboarding help.
+	• Pain Points:
+		○ Not familiar with ticketing workflows.
+		○ Unsure how to categorize or prioritize requests.
+		○ May feel lost without proper guidance.
+	• System Needs:
+		○ Simplified UI/UX with tooltips and onboarding tutorials.
+		○ Knowledge base integration (FAQs, self-help guides).
+		○ Easy way to raise tickets with minimal inputs.
+	• Key Quote: “I just want to get my laptop/software issues solved without worrying about complex processes.”
+	
+
+👤 Persona 4: Management / Leadership
+	• Name: Scooby Doo
+	• Role: Delivery Manager / IT Head
+	• Goal: Monitor efficiency, identify bottlenecks, and ensure SLAs are met.
+	• Pain Points:
+		○ No consolidated visibility on team performance.
+		○ Difficult to identify trends or recurring problem areas.
+	• System Needs:
+		○ Analytics dashboard for ticket volumes, resolution times, SLA breaches.
+		○ Reports (weekly, monthly, customizable).
+		○ Data insights for decision-making & resource planning.
+	• Key Quote: “I need insights, not raw data. The system should tell me what’s working and where we’re failing.”
+
+👤 Persona 3: The IT Operations Team
+	• Name: Anmol
+	• Role: IT Support Specialist
+	• Goal: Efficiently manage, prioritize, and resolve incoming tickets.
+	• Pain Points:
+		○ Overwhelmed if ticket volume spikes.
+		○ Difficulty in prioritization without proper categorization.
+		○ Lacks visibility into recurring issues.
+	• System Needs:
+		○ Ticket queue dashboard with prioritization filters.
+		○ SLA tracking & escalations.
+		○ Collaboration tools (assign/reassign, comments).
+	• Key Quote: “I need a system that helps me triage and resolve tickets fast, not drown me in clutter.”
+
+Why we are building this & what are we trying to solve / Features
+
+	1. Easy and Fast creation & resolution of tickets
+	2. Avoid human intervention where ever possible - so that human can work on more critical tasks
+	3. Increase Task Resolution Percentage
+	4. Reduce time to resolution of tickets
+	5. Avoid redundant ticket creation by providing a solution to users
+	6. Only involve IT team for critical issues
+	7. Provide analytics to see the recurring issues and other things
+	8. AI agents - Browser plugin - to take a screenshot and analyze the issue. [FUTURE USE CASE]
+	9. Multi Language support while creating tickets
+	10. Multi media capabilities - Upload Image [FUTURE USE CASE]
+	11. Create tickets from email directly [FUTURE USE CASE]
+	12. Create tickets on behalf of other users. [FUTURE USE CASE]
+	13. Feedback mechanism - Emoji based and text too
+	14. Create and suggest documents from knowledge base if the solution exists
+	15. Hierarchy of AI agents - Each agent specializes in certain tasks or domains
+	16. Real time Notifications (push and email)
+	17. Search from Pre-defined Questions
+	18. Avoid creating tickets if not required. - will improve KPIs
+	19. Auto and Manual Escalation Mechanism
+
+Prompts - v0.app
+
+
+Prompt 1
+
+create a user ticket management system, it should be able to perform the following actions
+1. create a new ticket by the following ways - ask user for basic details and ask them to describe the issue that they are facing. there should be a big text box with an option to select language that they want to write in. default is english. give options like - hindi, english only for now. User can also speak by clicking a button and then we write the same in the text box. 
+after we get the prompt - we will proceess the request and show a form with all the relavent information and ask the user to verify the things. 
+Once the user verifies - we will create a ticket page and show all the information on the page with the option to close ticket, reopen if closed. and escalate.
+also show the user a timeline of the things going on. Ticket first will be assigned to an AI agent which will decide what has to be done, and at every step it will give a reason in the comment, this ticket will be assigned a level as well. on critical levels and urgency the user can ask the agent to assign it to a person.
+
+
+
+
+
+https://dribbble.com/shots/23081588-Ticketing-System
+
+ChatGPT Findings
+
+⚡ Pattern here:
+	• Access issues → ~30% of tickets.
+	• Hardware issues → ~25%.
+	• Software/app issues → ~25%.
+	• Networking/security issues → ~20%.
+
+Key findings
+	• Password resets are frequently the top single-ticket category. - https://www.thinkhdi.com/library/supportworld/2011/password-reset-practices?utm_source=chatgpt.com
+
+
+Possible Issue Categories
+
+Issue sub-categories
+
+Access & Authentication
+	1. Password reset requests (AD, VPN, email, ERP).
+	2. Account lockouts due to failed login attempts.
+	3. New employee access provisioning (laptops, tools, portals).
+	4. Revoking access for offboarded employees.
+
+Access & Authentication Issues (e.g., password reset, account lockout)
+	• Username / Employee ID
+	• System/Application Name (AD, VPN, SAP, etc.)
+	• Type of Issue (reset, locked account, access denied)
+
+Networking & Connectivity Issues (VPN, Wi-Fi, LAN)
+	• Device Type (laptop, desktop, mobile)
+	• Location (onsite, remote, city/office ID)
+	• Connection Type (VPN/Wi-Fi/LAN)
+
+Networking & Connectivity
+	5. VPN not connecting / unstable.
+	6. Office Wi-Fi / LAN connectivity issues.
+	7. Proxy or firewall blocking required sites/tools.
+	8. Slow network speeds affecting productivity.
+
+Hardware / Device Issues (laptop, printer, peripherals)
+	• Asset ID / Device Serial Number
+	• Device Type (laptop, printer, headset, etc.)
+	• Observed Issue (not booting, paper jam, noise, overheating)
+
+Hardware / Device Issues
+	9. Laptop not booting / blue screen / frequent crashes.
+	10. Printer/scanner not working or not connected to the network.
+	11. Peripheral issues (keyboard, mouse, headset failures).
+	12. Disk space alerts / low storage on employee laptops.
+
+Software / Application Issues
+	• Application Name (e.g., SAP, Outlook, Timesheet Portal)
+	• Issue Type (installation, crash, license request, update)
+	• Error Message (if any)
+
+Software / Applications
+	13. Installation or upgrade of required software (e.g., IDEs, SAP clients, collaboration tools).
+	14. Enterprise app crashes (HR portal, timesheet system, ticketing system itself).
+	15. License expiry or renewal requests (Office, Adobe, IDEs).
+	16. Email client not syncing (Outlook/Gmail integration).
+
+Collaboration & Productivity Tools (Teams, Zoom, SharePoint)
+	• Tool Name
+	• Problem Type (login, audio, video, file access, sync issue)
+	• Meeting/Link ID (if relevant)
+
+Collaboration & Productivity Tools
+	17. Microsoft Teams / Zoom not working (login, video, audio issues).
+	18. Shared drives or SharePoint folders not accessible.
+	19. Calendar sync issues with meeting invites.
+
+Security & Compliance Issues (malware, antivirus, suspicious activity)
+	• Device Asset ID
+	• Type of Alert / Suspicious Activity
+	• Last Known Action (opened email attachment, downloaded file, etc.)
+
+Security & Compliance
+	20. Antivirus alerts, malware detection, or suspicious system behavior.
+
+Networking & Connectivity Issues
+
+{
+  "ticket": {
+    "user_id": "EMP45678",
+    "contact": {
+      "email": "user2@company.com",
+      "phone": "+91-9000000000"
+    },
+    "category": "Networking & Connectivity",
+    "subcategory": "VPN",
+    "summary": "VPN not connecting from home network",
+    "description": "VPN connection drops after entering credentials.",
+    "priority": "Critical",
+    "location": "Remote - Hyderabad",
+    "attachments": [],
+    "category_fields": {
+      "device_type": "Laptop",
+      "connection_type": "VPN",
+      "network_location": "Home Wi-Fi"
+    }
+  }
+}
+
+
+Access & Authentication Issues
+
+{
+  "ticket": {
+    "user_id": "EMP12345",
+    "contact": {
+      "email": "user@company.com",
+      "phone": "+91-9876543210"
+    },
+    "category": "Access & Authentication",
+    "subcategory": "Password Reset",
+    "summary": "AD password expired and unable to login",
+    "description": "User unable to login into Active Directory as password has expired.",
+    "priority": "High",
+    "location": "Remote - Bangalore",
+    "attachments": [],
+    "category_fields": {
+      "system_name": "Active Directory",
+      "issue_type": "Password Reset"
+    }
+  }
+}
+
+Software / Application Issues
+
+{
+  "ticket": {
+    "user_id": "EMP54321",
+    "contact": {
+      "email": "user4@company.com",
+      "phone": "+91-8999999999"
+    },
+    "category": "Software / Application",
+    "subcategory": "Outlook",
+    "summary": "Outlook crashing on startup",
+    "description": "Outlook closes immediately after launch with error code 0x800CCC0E.",
+    "priority": "High",
+    "location": "Office - Pune",
+    "attachments": ["screenshot.png"],
+    "category_fields": {
+      "application_name": "Outlook",
+      "issue_type": "Crash",
+      "error_message": "0x800CCC0E"
+    }
+  }
+}
+
+Hardware / Device Issues
+
+{
+  "ticket": {
+    "user_id": "EMP98765",
+    "contact": {
+      "email": "user3@company.com",
+      "phone": "+91-8123456789"
+    },
+    "category": "Hardware / Device",
+    "subcategory": "Printer",
+    "summary": "Printer not responding",
+    "description": "Unable to print documents, printer shows offline.",
+    "priority": "Medium",
+    "location": "Office - Chennai",
+    "attachments": [],
+    "category_fields": {
+      "asset_id": "PRN-00234",
+      "device_type": "Printer",
+      "observed_issue": "Offline / Not responding"
+    }
+  }
+}
+
+
+
+Security & Compliance Issues
+
+{
+  "ticket": {
+    "user_id": "EMP13579",
+    "contact": {
+      "email": "user6@company.com",
+      "phone": "+91-8777665544"
+    },
+    "category": "Security & Compliance",
+    "subcategory": "Antivirus Alert",
+    "summary": "Antivirus detected malware",
+    "description": "Antivirus flagged a suspicious executable on laptop.",
+    "priority": "Critical",
+    "location": "Office - Mumbai",
+    "attachments": ["alert_log.txt"],
+    "category_fields": {
+      "asset_id": "LPT-00987",
+      "alert_type": "Malware",
+      "last_known_action": "Opened email attachment"
+    }
+  }
+}
+
+Collaboration & Productivity Tools
+
+{
+  "ticket": {
+    "user_id": "EMP24680",
+    "contact": {
+      "email": "user5@company.com",
+      "phone": "+91-8111222333"
+    },
+    "category": "Collaboration & Productivity",
+    "subcategory": "Microsoft Teams",
+    "summary": "Unable to join Teams meeting",
+    "description": "Teams fails to connect to scheduled meeting, error code CAA5004B.",
+    "priority": "Medium",
+    "location": "Remote - Delhi",
+    "attachments": [],
+    "category_fields": {
+      "tool_name": "Microsoft Teams",
+      "problem_type": "Meeting Join Issue",
+      "meeting_id": "123-456-789"
+    }
+  }
+}
+
+Common Fields
+
+ "user_name": "John Doe",
+    "email": "john.doe@company.com",
+    "DC": "Bangalore",
+
+Description_prompt - will be sent to agent
+
+
+Category	Issues	Prompts per issue	Total prompts
+Access & Authentication	4	10	40
+Networking & Connectivity	4	10	40
+Hardware / Device	4	10	40
+Software / Applications	4	10	40
+Collaboration Tools	3	10	30
+Security & Compliance	3	10	30
+Total	22 issues	10 each	200 prompts
+
+This 200-prompt dataset now covers realistic short and long user statements, across common IT issues in an MNC environment like Infosys.
+
+{
+  "Access & Authentication": {
+    "mandatory_fields": ["user_name", "email", "department", "location"],
+    "issues": {
+      "Password Reset": ["system_name", "urgency_level"],
+      "Account Lockout": ["system_name", "urgency_level"],
+      "New Employee Access Provisioning": ["employee_name", "joining_date", "systems_required"],
+      "Revoking Access for Offboarded Employees": ["employee_name", "leaving_date", "systems_to_disable"]
+    }
+  },
+  "Networking & Connectivity": {
+    "mandatory_fields": ["user_name", "email", "location"],
+    "issues": {
+      "VPN not connecting / unstable": ["device_name", "vpn_client_version"],
+      "Office Wi-Fi / LAN connectivity issues": ["device_name", "office_location"],
+      "Proxy or firewall blocking required sites/tools": ["url_or_site", "device_name"],
+      "Slow network speeds affecting productivity": ["device_name", "network_segment"]
+    }
+  },
+  "Hardware / Device Issues": {
+    "mandatory_fields": ["user_name", "email", "device_type", "location"],
+    "issues": {
+      "Laptop not booting / crashes": ["device_serial_number", "error_message"],
+      "Printer/scanner not working": ["device_name", "office_location"],
+      "Peripheral issues (keyboard, mouse, headset failures)": ["device_name", "peripheral_type"],
+      "Disk space alerts / low storage": ["device_name", "drive_letter"]
+    }
+  },
+  "Software / Applications": {
+    "mandatory_fields": ["user_name", "email", "application_name", "device_name"],
+    "issues": {
+      "Installation or upgrade of required software": ["software_version", "admin_rights_required"],
+      "Enterprise app crashes": ["app_version", "error_message"],
+      "License expiry or renewal requests": ["license_key", "expiry_date"],
+      "Email client not syncing": ["email_client", "sync_status"]
+    }
+  },
+  "Collaboration & Productivity Tools": {
+    "mandatory_fields": ["user_name", "email", "tool_name"],
+    "issues": {
+      "Microsoft Teams / Zoom login issues": ["device_name", "app_version"],
+      "Shared drives / SharePoint folders not accessible": ["folder_name", "access_type"],
+      "Calendar sync issues": ["calendar_name", "device_name"]
+    }
+  },
+  "Security & Compliance": {
+    "mandatory_fields": ["user_name", "email", "system_name"],
+    "issues": {
+      "Antivirus alerts / malware detection": ["alert_type", "severity_level"],
+      "Suspicious system behavior": ["device_name", "incident_time"],
+      "Data compliance / policy violations": ["data_type", "policy_reference"]
+    }
+  }
+}
+
+{
+  "Access & Authentication": {
+    "Password Reset": {
+      "prompts": [
+        "I forgot my AD password and cannot log in.",
+        "Need to reset my VPN password urgently.",
+        "Unable to access email, probably password expired.",
+        "My SAP password isn’t working after last change.",
+        "Requesting password reset for my laptop login.",
+        "I tried to log in to my company email multiple times, but it keeps saying my password is incorrect. I need access to respond to client emails.",
+        "After updating my AD password yesterday, I can no longer log in to the VPN. Please reset it so I can continue my remote work.",
+        "My Teams and SharePoint login credentials are not working, and I suspect my password has expired. Requesting assistance to reset it.",
+        "I’m locked out of the ERP system and cannot reset my password via self-service. Need urgent help to regain access.",
+        "I attempted to log in to the internal portal several times, but the system rejects my password. Please reset it so I can submit my timesheet."
+      ]
+    },
+    "Account Lockout": {
+      "prompts": [
+        "My account is locked after multiple login attempts.",
+        "Cannot access VPN, account shows as locked.",
+        "AD account locked, need unlock to continue work.",
+        "Locked out of email after password attempt failed.",
+        "Cannot access SAP, account locked error.",
+        "I tried logging into my laptop several times and now I see an account locked message. I need access urgently for client deliverables.",
+        "VPN login fails and says account locked. I’m working from home and cannot connect to internal systems.",
+        "Email account is locked due to failed login attempts. I require immediate unlock to reply to pending messages.",
+        "I was entering my password correctly but the system locked my account. Please unlock so I can access my tools.",
+        "Teams and SharePoint are inaccessible due to account lockout. Need help to regain access."
+      ]
+    },
+    "New Employee Access Provisioning": {
+      "prompts": [
+        "New joiner needs access to SAP and email.",
+        "Requesting AD account creation for new employee.",
+        "Set up VPN access for new team member.",
+        "Need laptop and credentials for new hire.",
+        "SharePoint and Teams access required for new employee.",
+        "We have a new employee joining today in our project team. Please provision AD, email, VPN, and access to relevant SharePoint folders so they can start work immediately.",
+        "New hire in the IT department requires credentials for SAP and ERP. Kindly create the necessary accounts and provide access details.",
+        "The project team has a new member joining remotely. Need VPN setup and access to collaboration tools for seamless onboarding.",
+        "Please provision all required software, AD accounts, and internal portal access for the new employee joining our office today.",
+        "Our new team member cannot access the internal systems yet. Need accounts for email, Teams, SharePoint, and VPN configured ASAP."
+      ]
+    },
+    "Revoking Access for Offboarded Employees": {
+      "prompts": [
+        "Please disable AD and email access for employee leaving today.",
+        "Remove VPN access for ex-employee.",
+        "Terminate SAP and ERP system access for departing staff.",
+        "Offboarding request: deactivate all system accounts.",
+        "Lock SharePoint and Teams accounts for exiting employee.",
+        "An employee is leaving the company today, and we need their AD, VPN, email, and ERP accounts disabled immediately to maintain security compliance.",
+        "Please revoke all access permissions for the staff member who has exited the project. This includes SharePoint, Teams, and internal tools.",
+        "We have a departing employee whose credentials are still active. Requesting urgent deactivation of all systems to prevent unauthorized access.",
+        "Employee offboarding: kindly remove login rights to email, VPN, ERP, and collaboration tools for the leaving staff.",
+        "Please ensure the accounts of the exiting employee are fully disabled across all internal systems and remove them from distribution lists."
+      ]
+    }
+  },
+  "Networking & Connectivity": {
+    "VPN not connecting / unstable": {
+      "prompts": [
+        "VPN is not connecting from home.",
+        "Cannot establish VPN connection.",
+        "VPN keeps disconnecting randomly.",
+        "VPN login fails with error code 800.",
+        "Unable to access internal resources via VPN.",
+        "I’m working remotely and the VPN connection drops every few minutes, making it impossible to complete tasks.",
+        "After entering my credentials, the VPN fails to connect. Tried rebooting but still not working.",
+        "VPN client shows an error while connecting; I cannot access email or internal portals.",
+        "VPN disconnects frequently; this is affecting my productivity while working from home.",
+        "Tried multiple attempts to connect VPN, keeps failing with authentication error. Need urgent help."
+      ]
+    },
+    "Office Wi-Fi / LAN connectivity issues": {
+      "prompts": [
+        "Cannot connect to office Wi-Fi.",
+        "LAN port not working on my desk.",
+        "Wi-Fi keeps disconnecting in the office.",
+        "No internet on office desktop.",
+        "Unable to access internal network drives.",
+        "The Wi-Fi in the conference room keeps dropping, making it impossible to attend meetings online.",
+        "LAN cable plugged in but no connectivity. Cannot access internal applications or email.",
+        "Office Wi-Fi shows connected but no internet. Tried restarting laptop without success.",
+        "Unable to access shared drives over LAN; network seems unreachable.",
+        "Wi-Fi connection is very slow and intermittent in the office floor; productivity affected."
+      ]
+    },
+    "Proxy or firewall blocking required sites/tools": {
+      "prompts": [
+        "Cannot access GitHub from office network.",
+        "Proxy is blocking VPN connection.",
+        "Firewall is preventing access to internal dashboard.",
+        "Cannot open external client site from office laptop.",
+        "Internal portal blocked by firewall.",
+        "Trying to access GitHub to pull project repos but network proxy is blocking it. Need access.",
+        "VPN cannot connect because firewall rules prevent required ports; request adjustment.",
+        "Client demo site inaccessible from office network due to firewall restriction; need urgent fix.",
+        "Internal analytics dashboard blocked; proxy settings might be wrong.",
+        "Cannot reach external vendor portal from office laptop; request network team to allow access."
+      ]
+    },
+    "Slow network speeds affecting productivity": {
+      "prompts": [
+        "Internet is very slow in my office.",
+        "Network latency high; applications lagging.",
+        "Cannot upload files due to slow network.",
+        "Video calls keep freezing because of slow LAN.",
+        "Internal portal loads very slowly.",
+        "Uploading documents to SharePoint takes a long time; network seems slow.",
+        "Teams video calls are freezing constantly; suspect network slowness.",
+        "Applications hosted internally are very slow; cannot complete daily tasks.",
+        "LAN network is intermittent and slow across multiple devices.",
+        "High latency in internal apps causing delays; need IT team to investigate network performance."
+      ]
+    }
+  },
+  "Hardware / Device Issues": {
+    "Laptop not booting / crashes": {
+      "prompts": [
+        "Laptop won’t start.",
+        "Blue screen after login.",
+        "Laptop freezes on boot.",
+        "Cannot power on laptop.",
+        "Laptop crashes randomly.",
+        "After pressing the power button, the laptop shows a black screen and does not boot.",
+        "Blue screen error during startup; cannot access desktop.",
+        "Laptop freezes on the Windows logo screen; tried safe mode without success.",
+        "Laptop restarts itself repeatedly and cannot be used for work.",
+        "System crashes with error messages, affecting daily work tasks."
+      ]
+    },
+    "Printer/scanner not working": {
+      "prompts": [
+        "Office printer not printing.",
+        "Scanner not scanning documents.",
+        "Printer shows error 0x123.",
+        "Cannot connect to network printer.",
+        "Printer queue stuck.",
+        "Tried printing documents but printer shows offline status; urgent need for client documents.",
+        "Scanner not saving scanned files to shared folder.",
+        "Printer paper jam cleared, but still not printing.",
+        "Cannot install printer driver on my laptop; need access to network printer.",
+        "Printer rejects all jobs from my computer; troubleshooting required."
+      ]
+    },
+    "Peripheral issues (keyboard, mouse, headset failures)": {
+      "prompts": [
+        "Keyboard not typing.",
+        "Mouse pointer frozen.",
+        "Headset mic not working in Teams.",
+        "External monitor not detected.",
+        "Webcam not functioning.",
+        "Headset microphone not recognized during video calls; affects client meetings.",
+        "External monitor shows no signal when connected via HDMI.",
+        "Mouse stops responding intermittently; affects coding work.",
+        "Keyboard keys not responding; cannot complete typing tasks.",
+        "Webcam fails to start on Teams/Zoom; urgent fix needed for online meetings."
+      ]
+    },
+    "Disk space alerts / low storage": {
+      "prompts": [
+        "Laptop storage almost full.",
+        "Cannot save files; disk space low.",
+        "C: drive almost full.",
+        "Warning: low disk space.",
+        "Unable to download software due to storage.",
+        "Laptop warns about low disk space and prevents me from saving important project files.",
+        "Cannot install new applications; storage almost full on C: drive.",
+        "Disk space alerts appear frequently; need cleanup or additional storage.",
+        "Working on large datasets but laptop storage insufficient.",
+        "Receiving repeated low storage warnings affecting productivity; request storage expansion."
+      ]
+    }
+  },
+  "Software / Applications": {
+    "Installation or upgrade of required software": {
+      "prompts": [
+        "Need to install SAP client.",
+        "Cannot install Outlook on my laptop.",
+        "Requesting upgrade to latest Java version.",
+        "Software installation fails with error 1603.",
+        "Need admin rights to install IDE.",
+        "Tried installing SAP GUI but it fails with unknown error; need IT assistance.",
+        "Cannot upgrade Adobe Acrobat; admin privileges required to proceed.",
+        "Installation of Timesheet software unsuccessful; request urgent support.",
+        "New project requires Python 3.11, unable to install due to permissions.",
+        "Attempted to update Jira client, but setup fails; please help."
+      ]
+    },
+    "Enterprise app crashes": {
+      "prompts": [
+        "SAP crashes on login.",
+        "Outlook freezes when sending emails.",
+        "Timesheet app not responding.",
+        "ERP client crashes intermittently.",
+        "Internal dashboard shows error 500.",
+        "SAP GUI crashes every time I open a report; prevents work on client data.",
+        "Outlook freezes when attaching files; cannot send important emails.",
+        "Timesheet portal becomes unresponsive while saving entries.",
+        "ERP software crashes randomly, losing unsaved data.",
+        "Internal dashboard fails to load and throws server error."
+      ]
+    },
+    "License expiry or renewal requests": {
+      "prompts": [
+        "Adobe license expired.",
+        "Requesting renewal for Office 365 subscription.",
+        "SAP license needs update.",
+        "IDE license expired.",
+        "Need renewal for project management software.",
+        "Adobe Creative Cloud license has expired; need urgent renewal to continue client work.",
+        "Office 365 license shows expired; cannot access Outlook and Teams.",
+        "SAP license needs renewal; workflows blocked until update.",
+        "IDE license expired, preventing software development tasks.",
+        "Project management tool subscription ended; require renewal to manage tasks."
+      ]
+    },
+    "Email client not syncing": {
+      "prompts": [
+        "Outlook not syncing emails.",
+        "Cannot receive new emails.",
+        "Sent emails not appearing in sent folder.",
+        "Calendar events not updating.",
+        "Email attachments failing to download.",
+        "Outlook is not syncing new emails from the server; request urgent fix.",
+        "Cannot receive client emails; syncing stopped without errors.",
+        "Calendar invites not updating in Outlook; causing meeting confusion.",
+        "Attachments fail to download from emails; request IT support.",
+        "Sent folder empty, but emails were sent; Outlook not syncing properly."
+      ]
+    }
+  },
+  "Collaboration & Productivity Tools": {
+    "Microsoft Teams / Zoom login issues": {
+      "prompts": [
+        "Cannot log in to Teams.",
+        "Zoom login fails.",
+        "Teams authentication error.",
+        "Cannot join Zoom meetings.",
+        "Teams app keeps crashing on login.",
+        "Tried to log in to Teams multiple times, keeps giving authentication error; need access for client calls.",
+        "Zoom app fails during login with error code 104; cannot join scheduled meetings.",
+        "Teams shows ‘sign-in failed’; urgent access required for internal meetings.",
+        "Cannot access Teams on desktop; mobile login works, need resolution.",
+        "Zoom client crashes immediately after login; prevents attending online client demos."
+      ]
+    },
+    "Shared drives / SharePoint folders not accessible": {
+      "prompts": [
+        "Cannot access SharePoint folder.",
+        "Shared drive inaccessible.",
+        "Permissions denied for project folder.",
+        "Cannot open files on team drive.",
+        "SharePoint sync failing.",
+        "Unable to access project SharePoint folder; request read/write permissions.",
+        "Shared drive not visible on my laptop; critical files needed for work.",
+        "Cannot sync files from SharePoint to local machine; urgent fix needed.",
+        "Access denied to team drive; cannot upload project documents.",
+        "SharePoint folder shows error 403; unable to download files for client project."
+      ]
+    },
+    "Calendar sync issues": {
+      "prompts": [
+        "Outlook calendar not updating.",
+        "Meeting invites missing.",
+        "Cannot sync calendar across devices.",
+        "Recurring meetings not showing.",
+        "Time zone incorrect in calendar.",
+        "Calendar events from manager are not syncing to my Outlook; missing client calls.",
+        "Recurring meetings disappear after update; need IT to fix calendar sync.",
+        "Cannot sync calendar across desktop and mobile devices.",
+        "Time zone mismatch causes meeting notifications at wrong times; request resolution.",
+        "Calendar invites not received from SharePoint project calendar."
+      ]
+    }
+  },
+  "Security & Compliance": {
+    "Antivirus alerts / malware detection": {
+      "prompts": [
+        "Antivirus shows threat detected.",
+        "Malware alert on laptop.",
+        "Cannot run antivirus scan.",
+        "Virus detected in downloaded file.",
+        "AV quarantined important file.",
+        "Antivirus detected a malware threat in a downloaded document; need IT guidance.",
+        "Laptop flagged with multiple virus alerts; cannot access project files.",
+        "Real-time protection not working; risk of malware infection.",
+        "Malware detected in email attachment; need urgent scan and cleanup.",
+        "Antivirus quarantined essential project files; request recovery support."
+      ]
+    },
+    "Suspicious system behavior": {
+      "prompts": [
+        "Laptop behaving strangely.",
+        "Unexpected popups appearing.",
+        "System unusually slow.",
+        "Apps opening automatically.",
+        "Unauthorized access suspected.",
+        "Laptop performance slowed drastically; suspect malware or unauthorized access.",
+        "Popups appearing in company applications; may indicate security threat.",
+        "Files disappearing or moving unexpectedly; possible security breach.",
+        "Unauthorized login attempts detected on my account; urgent investigation required.",
+        "System behaving erratically after installing updates; request IT review for security risks."
+      ]
+    },
+    "Data compliance / policy violations": {
+      "prompts": [
+        "Accidentally sent confidential file externally.",
+        "Need to check GDPR compliance on data.",
+        "Internal policy violation alert.",
+        "File shared outside company by mistake.",
+        "Need audit report of data access.",
+        "Shared a confidential client file to external email by mistake; request compliance review.",
+        "Need guidance to ensure project data meets GDPR requirements.",
+        "Received policy violation alert for document handling; request IT assistance.",
+        "File incorrectly shared outside company; want to revoke access and ensure compliance.",
+        "Request audit report to verify data access logs for compliance purposes."
+      ]
+    }
+  }
+}
+
+1. Classifier Agent (First Layer)
+Role:
+	• Acts as the entry point for all incoming tickets.
+	• Classifies the ticket based on user text (short/long prompts).
+	• Adds metadata required for routing:
+		○ Category (one of the 6 categories)
+		○ Severity (e.g., Low, Medium, High, Critical)
+		○ Urgency (e.g., Immediate, Today, This Week)
+Responsibilities:
+	1. Text processing: Normalize and understand user prompt.
+	2. Category tagging: Assign one of the 6 main categories.
+	3. Severity & urgency assessment: Based on keywords (e.g., “cannot login” → High/Immediate).
+	4. Forwarding: Send classified ticket to the relevant specialized agent in layer 2.
+Why it helps:
+	• Separates general understanding from expert processing, making the system modular.
+	• Easy to add new categories in future without retraining category-specific agents.
+	• Acts as a bottleneck to maintain consistency in ticket metadata.
+
+2. Category-Specialized Agents (Second Layer)
+Structure:
+	• Each category has its own specialized agent.
+	• These agents handle expert processing and resolution suggestions.
+Agents in Layer 2:
+	1. Access & Authentication Agent
+	2. Networking & Connectivity Agent
+	3. Hardware / Device Agent
+	4. Software / Applications Agent
+	5. Collaboration & Productivity Tools Agent
+	6. Security & Compliance Agent
+Responsibilities of Each Specialized Agent:
+	• Understand category-specific user prompts in detail.
+	• Suggest solutions or next steps:
+		○ Auto-resolve common issues (password reset, VPN reconnection, etc.)
+		○ Create structured ticket for human intervention if needed
+	• Validate mandatory fields based on category & issue.
+	• Optionally, predict estimated resolution time.
+Why it helps:
+	• Each agent focuses on a narrow domain, making it accurate and efficient.
+	• Layer 2 agents can be updated independently (e.g., VPN rules change → only Networking Agent retrained).
+	• Supports scaling horizontally: can add more category agents or sub-specialists without affecting the classifier.
+
+3. Ticket Flow Example
+	1. User submits a ticket: “VPN keeps disconnecting while working from home.”
+	2. Classifier Agent:
+		○ Category → Networking & Connectivity
+		○ Severity → High
+		○ Urgency → Immediate
+	3. Networking & Connectivity Agent:
+		○ Checks known issues, VPN logs, proxy rules
+		○ Suggests solution or escalates to human IT support
+		○ Ensures mandatory fields (device_name, vpn_client_version, location) are captured
+
+User (Text Input OR Audio Input)
+            ↓
+[Streamlit Frontend] 
+            ↓
+  (if audio → convert to text)
+            ↓
+[Classifier Agent using ChatGPT / Cursor]
+            ↓
+(Category, Severity, Urgency)
+            ↓
+[Category Agent using ChatGPT / Cursor]
+            ↓
+(Solution / Escalation / Ticket Creation)
+            ↓
+[Streamlit Output]
