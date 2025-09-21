@@ -77,7 +77,7 @@
             </div>
             {% if ticket.status != 'Resolved' %}
             <div class="mt-4">
-                <textarea class="form-control" rows="3" placeholder="Leave a comment..."></textarea>
+                <textarea class="form-control" rows="3" id="commentText" placeholder="Leave a comment..."></textarea>
                 <button class="btn btn-secondary mt-2" id="saveCommentButton">Save Comment</button>
             </div>
             {% endif %}
@@ -240,6 +240,44 @@
 </div>
 
 <script>
+
+    document.getElementById('saveCommentButton').addEventListener('click', function() {
+        const ticketId = {{ ticket.id }};
+        const commentText = document.getElementById('commentText').value;
+
+        if (!commentText.trim()) {
+            alert('Please enter a comment before saving.');
+            return;
+        }
+
+        fetch('/add_comment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                request_id: ticketId,
+                comment: commentText
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Clear the comment text area
+                document.getElementById('commentText').value = '';
+                // Reload the page to show the new comment
+                location.reload();
+            } else {
+                alert('Failed to save comment.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while saving the comment.');
+        });
+    });
+
+
     document.querySelectorAll('.emoji').forEach(emoji => {
         emoji.addEventListener('click', function() {
             const rating = this.getAttribute('data-value');
