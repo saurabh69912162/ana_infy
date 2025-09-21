@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Ticket Management System{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Add shadow to the right */
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+    body {
+        background-color: #f4f4f9;
+        color: #333;
+        font-size: 14px;
+    }
+    .box {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 5px 0;
+        text-align: center;
+    }
+    .btn-custom {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+    .btn-custom:hover {
+        background-color: #0056b3;
+    }
+    .dropdown-menu {
+        min-width: 150px;
+    }
+    .number {
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 5px;
+    }
+    /* Loader styles */
+    .loader {
+        border: 8px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 8px solid #007bff;
+        width: 40px;
+        height: 40px;
+        animation: spin 2s linear infinite;
+        display: none;
+        margin: 0 auto;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .sidebar2 p, .sidebar2 h5 {
+        text-align: left;
+    }
+    .sidebar a {
+        color: black;
+        text-decoration: none;
+        padding: 12px 15px;
+        display: block;
+        transition: background-color 0.3s ease;
+        border-radius: 8px;
+    }
+    .sidebar a.active {
+        background-color: #f3e6ff; /* Lighter purple */
+    }
+    .sidebar a:hover {
+        background-color: #f0f0f0;
+    }
+</style>
+<script>
+    // Prevent form resubmission on page reload
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed; right: 0; top: 0; z-index: 1000; width: calc(100% - 250px); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+            <span class="navbar-text" style="font-size: 16px; font-weight: bold; color: #000000;">
+                Hi Anamika, Good Morning ☀️
+            </span>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search tickets..." aria-label="Search">
+                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="sidebar">
+        <h4>Infosys Ticket Management System</h4>
+        <div class="mt-3">
+            <a href="/" class="d-block mb-3" style="font-size: 18px;" id="home-link"><i class="fas fa-home"></i> Homepage</a>
+            <a href="/all_requests" class="d-block mb-3" style="font-size: 18px;" id="all-requests-link"><i class="fas fa-ticket-alt"></i> View All Tickets</a>
+            <a href="/knowledge_base" class="d-block mb-3" style="font-size: 18px;" id="knowledge-base-link"><i class="fas fa-book"></i> Knowledge Base</a>
+            <a href="/analytics" class="d-block mb-3" style="font-size: 18px;" id="analytics-link"><i class="fas fa-chart-bar"></i> Analytics</a>
+            <hr>
+            <div class="submenu-container">
+                <a href="#" class="d-block mb-3 submenu-toggle" style="font-size: 18px;" onclick="toggleSubmenu(event)">
+                    <i class="fas fa-book"></i> Documentation
+                    <i class="fas fa-chevron-down" style="float: right;"></i>
+                </a>
+                <div class="submenu" style="display: none; padding-left: 20px;">
+                    <a href="/user-personas" class="d-block mb-2" style="font-size: 16px;">User Personas</a>
+                    <a href="/architechure-diagram" class="d-block mb-2" style="font-size: 16px;">Architecture Diagram</a>
+                    <a href="/sequence-diagram" class="d-block mb-2" style="font-size: 16px;">Sequence Diagram</a>
+                    <a href="/tech-stack" class="d-block mb-2" style="font-size: 16px;">Tech Stack</a>
+                    <a href="/readme" class="d-block mb-2" style="font-size: 16px;">README</a>
+                </div>
+            </div>
+            <div class="submenu-container">
+                <a href="#" class="d-block mb-3 submenu-toggle" style="font-size: 18px;" onclick="toggleSubmenu(event)">
+                    <i class="fas fa-tasks"></i> Actions
+                    <i class="fas fa-chevron-down" style="float: right;"></i>
+                </a>
+                <div class="submenu" style="display: none; padding-left: 20px;">
+                    <a href="#" onclick="escalatePendingTasks()" class="d-block mb-2" style="font-size: 16px;">Escalate pending tasks</a>
+                    <a href="#" onclick="autoAssignTasks()" class="d-block mb-2" style="font-size: 16px;">Auto assign task to IT team members</a>
+                </div>
+            </div>
+            <script>
+                function toggleSubmenu(event) {
+                    event.preventDefault();
+                    const submenu = event.target.closest('.submenu-container').querySelector('.submenu');
+                    const chevron = event.target.querySelector('.fa-chevron-down');
+                    if (submenu.style.display === 'none') {
+                        submenu.style.display = 'block';
+                        chevron.style.transform = 'rotate(180deg)';
+                    } else {
+                        submenu.style.display = 'none';
+                        chevron.style.transform = 'rotate(0deg)';
+                    }
+                }
+            </script>
+        </div>
+    </div>
+
+    <div class="content" style="margin-top: 56px;">
+        <!-- Modal for Ticket Not Found -->
+        <div class="modal fade" id="ticketNotFoundModal" tabindex="-1" role="dialog" aria-labelledby="ticketNotFoundModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ticketNotFoundModalLabel">Ticket Not Found</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        The ticket ID you entered was not found. Please try searching again.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+    <script>
+        function toggleTicketStatus(ticketId) {
+            fetch(`/toggle_ticket_status?id=${ticketId}`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert('Failed to update ticket status.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while updating ticket status.');
+                });
+        }
+    </script>
+    <script>
+        function scrollToNewTicketForm() {
+            const form = document.getElementById('newTicketForm');
+            if (form) {
+                form.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert('New ticket form not found.');
+            }
+        }
+    </script>
+    <script>
+        // Highlight the active link
+        const currentPath = window.location.pathname;
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    document.querySelector('.form-inline').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        const ticketId = document.querySelector('.form-control').value;
+        fetch('/search_ticket', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ ticket_id: ticketId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = data.redirect_url;
+            } else {
+                $('#ticketNotFoundModal').modal('show');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while searching for the ticket.');
+        });
+    });
+</script>
+
+<script>
+    function escalatePendingTasks() {
+        fetch('/escalate_pending_tasks', {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                location.reload();
+            } else {
+                alert('Failed to escalate pending tasks.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while escalating pending tasks.');
+        });
+    }
+</script>
+
+<script>
+    function autoAssignTasks() {
+        fetch('/auto_assign_tasks', {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                location.reload();
+            } else {
+                alert('Failed to auto-assign tasks.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while auto-assigning tasks.');
+        });
+    }
+</script>
+
+</body>
+</html> 

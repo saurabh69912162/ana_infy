@@ -1,0 +1,5 @@
+streamlit
+speechrecognition 
+flask 
+openai 
+python-dotenv 

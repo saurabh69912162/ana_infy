@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics - Ticket Management System{% endblock %}
+
+{% block content %}
+<head>
+    <!-- Include AMcharts libraries -->
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+</head>
+<div class="container">
+    <h3>Analytics</h3>
+    <p>This page provides insights into the distribution of tasks handled by AI agents and the IT team. The first chart shows the number of tasks managed by each agent, while the second chart compares the overall task distribution between AI agents and the IT team.</p>
+
+    <div class="chart-container" style="background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; margin-bottom: 20px;">
+        <h4>Tasks Distribution</h4>
+        <hr>
+        <div id="agentTaskChart" style="width: 100%; height: 400px;"></div>
+    </div>
+
+    <div class="chart-container" style="background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; margin-bottom: 20px;">
+        <h4>AI vs IT Team Tasks Distribution</h4>
+        <hr>
+        <div id="aiVsItChart" style="width: 100%; height: 400px;"></div>
+    </div>
+
+    <div class="chart-container" style="background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; margin-bottom: 20px;">
+        <h4>Feedback Distribution</h4>
+        <hr>
+        <div id="feedbackChart" style="width: 100%; height: 400px;"></div>
+    </div>
+
+    <div class="d-flex justify-content-between">
+        {% for item in avg_time_distribution %}
+        <div class="avg-time-box" style="background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; width: 48%;">
+            <h5>{{ item.agent_type }} Average Time</h5>
+            <p>{{ item.avg_time }}</p>
+            <p>{{ item.ticket_count }} ticket(s)</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+
+<script>
+    am5.ready(function() {
+
+        // Create root element for the first chart
+        var root = am5.Root.new("agentTaskChart");
+
+        // Set themes
+        root.setThemes([
+            am5themes_Animated.new(root)
+        ]);
+
+        // Create chart
+        var chart = root.container.children.push(am5xy.XYChart.new(root, {
+            panX: true,
+            panY: true,
+            wheelX: "panX",
+            wheelY: "zoomX",
+            pinchZoomX:true
+        }));
+
+        // Add cursor
+        var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
+        cursor.lineY.set("visible", false);
+
+        // Create axes
+        var xRenderer = am5xy.AxisRendererX.new(root, { minGridDistance: 30 });
+        xRenderer.labels.template.setAll({ rotation: -45, centerY: am5.p50, centerX: am5.p100, paddingRight: 15 });
+
+        var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
+            maxDeviation: 0.3,
+            categoryField: "agent_name",
+            renderer: xRenderer,
+            tooltip: am5.Tooltip.new(root, {})
+        }));
+
+        var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+            maxDeviation: 0.3,
+            renderer: am5xy.AxisRendererY.new(root, {})
+        }));
+
+        // Create series
+        var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+            name: "Series 1",
+            xAxis: xAxis,
+            yAxis: yAxis,
+            valueYField: "task_count",
+            sequencedInterpolation: true,
+            categoryXField: "agent_name",
+            tooltip: am5.Tooltip.new(root, {
+                labelText:"{valueY}"
+            })
+        }));
+
+        series.columns.template.setAll({ cornerRadiusTL: 5, cornerRadiusTR: 5 });
+        series.columns.template.adapters.add("fill", function(fill, target) {
+            return chart.get("colors").getIndex(series.columns.indexOf(target));
+        });
+
+        series.columns.template.adapters.add("stroke", function(stroke, target) {
+            return chart.get("colors").getIndex(series.columns.indexOf(target));
+        });
+
+        // Set data
+        var data = {{ agent_task_distribution|tojson }};
+        xAxis.data.setAll(data);
+        series.data.setAll(data);
+
+        // Create root element for the second chart
+        var root2 = am5.Root.new("aiVsItChart");
+
+        // Set themes
+        root2.setThemes([
+            am5themes_Animated.new(root2)
+        ]);
+
+        // Create chart
+        var chart2 = root2.container.children.push(am5percent.PieChart.new(root2, {
+            layout: root2.verticalLayout
+        }));
+
+        // Create series
+        var series2 = chart2.series.push(am5percent.PieSeries.new(root2, {
+            valueField: "task_count",
+            categoryField: "agent_type"
+        }));
+
+        // Set data
+        var data2 = {{ ai_vs_it_distribution|tojson }};
+        series2.data.setAll(data2);
+
+    }); // end am5.ready()
+</script>
+
+<script>
+    am4core.ready(function() {
+
+        // Create chart instance
+        var feedbackChart = am4core.create("feedbackChart", am4charts.XYChart);
+
+        // Add data
+        feedbackChart.data = {{ feedback_distribution | tojson }};
+
+        // Create axes
+        var categoryAxis = feedbackChart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "points";
+        categoryAxis.title.text = "Rating Points";
+
+        var valueAxis = feedbackChart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.title.text = "Number of Feedbacks";
+
+        // Create series
+        var series = feedbackChart.series.push(new am4charts.ColumnSeries());
+        series.dataFields.valueY = "count";
+        series.dataFields.categoryX = "points";
+        series.name = "Feedback";
+        series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+        series.columns.template.fillOpacity = .8;
+
+        var columnTemplate = series.columns.template;
+        columnTemplate.strokeWidth = 2;
+        columnTemplate.strokeOpacity = 1;
+
+    });
+</script>
+{% endblock %} 

@@ -1,0 +1,16 @@
+{
+    "Access & Authentication": {
+      "Password Reset": {
+        "prompts": [
+          {"text":"I forgot my AD password and cannot log in.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+          {"text":"Need to reset my VPN password urgently.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+          {"text":"Requesting password reset for my laptop login.","severity":"Medium","urgency":"Today","agent":"access_authentication"},
+          {"text":"I tried to log in to my company email multiple times, but it keeps saying my password is incorrect. I need access to respond to client emails.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+          {"text":"After updating my AD password yesterday, I can no longer log in to the VPN. Please reset it so I can continue my remote work.","severity":"High","urgency":"Immediate","agent":"access_authentication"}
+        ]
+      }
+    }
+}
+    
+  
+  

@@ -1,0 +1,325 @@
+{
+  "Access & Authentication": {
+    "Password Reset": {
+      "prompts": [
+        {"text":"I forgot my AD password and cannot log in.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"Need to reset my VPN password urgently.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"Unable to access email, probably password expired.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"My SAP password isn’t working after last change.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"Requesting password reset for my laptop login.","severity":"Medium","urgency":"Today","agent":"access_authentication"},
+        {"text":"I tried to log in to my company email multiple times, but it keeps saying my password is incorrect. I need access to respond to client emails.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"After updating my AD password yesterday, I can no longer log in to the VPN. Please reset it so I can continue my remote work.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"My Teams and SharePoint login credentials are not working, and I suspect my password has expired. Requesting assistance to reset it.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"I’m locked out of the ERP system and cannot reset my password via self-service. Need urgent help to regain access.","severity":"Critical","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"I attempted to log in to the internal portal several times, but the system rejects my password. Please reset it so I can submit my timesheet.","severity":"High","urgency":"Today","agent":"access_authentication"}
+      ]
+    },
+    "Account Lockout": {
+      "prompts":[
+        {"text":"My account is locked after multiple login attempts.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"Cannot access VPN, account shows as locked.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"AD account locked, need unlock to continue work.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"Locked out of email after password attempt failed.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"Cannot access SAP, account locked error.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"I tried logging into my laptop several times and now I see an account locked message. I need access urgently for client deliverables.","severity":"Critical","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"VPN login fails and says account locked. I’m working from home and cannot connect to internal systems.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"Email account is locked due to failed login attempts. I require immediate unlock to reply to pending messages.","severity":"Critical","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"I was entering my password correctly but the system locked my account. Please unlock so I can access my tools.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"Teams and SharePoint are inaccessible due to account lockout. Need help to regain access.","severity":"High","urgency":"Immediate","agent":"access_authentication"}
+      ]
+    },
+    "New Employee Access Provisioning": {
+      "prompts":[
+        {"text":"New joiner needs access to SAP and email.","severity":"Medium","urgency":"Today","agent":"access_authentication"},
+        {"text":"Requesting AD account creation for new employee.","severity":"Medium","urgency":"Today","agent":"access_authentication"},
+        {"text":"Set up VPN access for new team member.","severity":"Medium","urgency":"Today","agent":"access_authentication"},
+        {"text":"Need laptop and credentials for new hire.","severity":"Medium","urgency":"Today","agent":"access_authentication"},
+        {"text":"SharePoint and Teams access required for new employee.","severity":"Medium","urgency":"Today","agent":"access_authentication"},
+        {"text":"We have a new employee joining today in our project team. Please provision AD, email, VPN, and access to relevant SharePoint folders so they can start work immediately.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"New hire in the IT department requires credentials for SAP and ERP. Kindly create the necessary accounts and provide access details.","severity":"Medium","urgency":"Today","agent":"access_authentication"},
+        {"text":"The project team has a new member joining remotely. Need VPN setup and access to collaboration tools for seamless onboarding.","severity":"Medium","urgency":"Today","agent":"access_authentication"},
+        {"text":"Please provision all required software, AD accounts, and internal portal access for the new employee joining our office today.","severity":"Medium","urgency":"Today","agent":"access_authentication"},
+        {"text":"Our new team member cannot access the internal systems yet. Need accounts for email, Teams, SharePoint, and VPN configured ASAP.","severity":"High","urgency":"Immediate","agent":"access_authentication"}
+      ]
+    },
+    "Revoking Access for Offboarded Employees": {
+      "prompts":[
+        {"text":"Please disable AD and email access for employee leaving today.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"Remove VPN access for ex-employee.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"Terminate SAP and ERP system access for departing staff.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"Offboarding request: deactivate all system accounts.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"Lock SharePoint and Teams accounts for exiting employee.","severity":"High","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"An employee is leaving the company today, and we need their AD, VPN, email, and ERP accounts disabled immediately to maintain security compliance.","severity":"Critical","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"Please revoke all access permissions for the staff member who has exited the project. This includes SharePoint, Teams, and internal tools.","severity":"High","urgency":"Today","agent":"access_authentication"},
+        {"text":"We have a departing employee whose credentials are still active. Requesting urgent deactivation of all systems to prevent unauthorized access.","severity":"Critical","urgency":"Immediate","agent":"access_authentication"},
+        {"text":"Employee offboarding: kindly remove login rights to email, VPN, ERP, and collaboration tools for the leaving staff.","severity":"High","urgency":"Today","agent":"access_authentication"},
+        {"text":"Please ensure the accounts of the exiting employee are fully disabled across all internal systems and remove them from distribution lists.","severity":"High","urgency":"Today","agent":"access_authentication"}
+      ]
+    }
+  },
+  "Networking & Connectivity": {
+    "VPN not connecting / unstable": {
+      "prompts":[
+        {"text":"VPN is not connecting from home.","severity":"High","urgency":"Immediate","agent":"networking_connectivity"},
+        {"text":"Cannot establish VPN connection.","severity":"High","urgency":"Immediate","agent":"networking_connectivity"},
+        {"text":"VPN keeps disconnecting randomly.","severity":"High","urgency":"Immediate","agent":"networking_connectivity"},
+        {"text":"VPN login fails with error code 800.","severity":"High","urgency":"Immediate","agent":"networking_connectivity"},
+        {"text":"Unable to access internal resources via VPN.","severity":"High","urgency":"Immediate","agent":"networking_connectivity"},
+        {"text":"I’m working remotely and the VPN connection drops every few minutes, making it impossible to complete tasks.","severity":"Critical","urgency":"Immediate","agent":"networking_connectivity"},
+        {"text":"After entering my credentials, the VPN fails to connect. Tried rebooting but still not working.","severity":"High","urgency":"Immediate","agent":"networking_connectivity"},
+        {"text":"VPN client shows an error while connecting; I cannot access email or internal portals.","severity":"High","urgency":"Immediate","agent":"networking_connectivity"},
+        {"text":"VPN disconnects frequently; this is affecting my productivity while working from home.","severity":"High","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Tried multiple attempts to connect VPN, keeps failing with authentication error. Need urgent help.","severity":"Critical","urgency":"Immediate","agent":"networking_connectivity"}
+      ]
+    },
+    "Office Wi-Fi / LAN connectivity issues": {
+      "prompts":[
+        {"text":"Cannot connect to office Wi-Fi.","severity":"Medium","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"LAN port not working on my desk.","severity":"Medium","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Wi-Fi keeps disconnecting in the office.","severity":"Medium","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"No internet on office desktop.","severity":"High","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Unable to access internal network drives.","severity":"Medium","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"The Wi-Fi in the conference room keeps dropping, making it impossible to attend meetings online.","severity":"High","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"LAN cable plugged in but no connectivity. Cannot access internal applications or email.","severity":"High","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Office Wi-Fi shows connected but no internet. Tried restarting laptop without success.","severity":"High","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Unable to access shared drives over LAN; network seems unreachable.","severity":"High","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Wi-Fi connection is very slow and intermittent in the office floor; productivity affected.","severity":"Medium","urgency":"Today","agent":"networking_connectivity"}
+      ]
+    },
+    "Proxy or firewall blocking required sites/tools": {
+      "prompts":[
+        {"text":"Cannot access GitHub from office network.","severity":"Medium","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Proxy is blocking VPN connection.","severity":"High","urgency":"Immediate","agent":"networking_connectivity"},
+        {"text":"Firewall is preventing access to internal dashboard.","severity":"High","urgency":"Immediate","agent":"networking_connectivity"},
+        {"text":"Cannot open external client site from office laptop.","severity":"Medium","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Internal portal blocked by firewall.","severity":"High","urgency":"Immediate","agent":"networking_connectivity"},
+        {"text":"Trying to access GitHub to pull project repos but network proxy is blocking it. Need access.","severity":"High","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"VPN cannot connect because firewall rules prevent required ports; request adjustment.","severity":"High","urgency":"Immediate","agent":"networking_connectivity"},
+        {"text":"Client demo site inaccessible from office network due to firewall restriction; need urgent fix.","severity":"High","urgency":"Immediate","agent":"networking_connectivity"},
+        {"text":"Internal analytics dashboard blocked; proxy settings might be wrong.","severity":"Medium","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Cannot reach external vendor portal from office laptop; request network team to allow access.","severity":"Medium","urgency":"Today","agent":"networking_connectivity"}
+      ]
+    },
+    "Slow network speeds affecting productivity": {
+      "prompts":[
+        {"text":"Internet is very slow in my office.","severity":"Medium","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Network latency high; applications lagging.","severity":"Medium","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Cannot upload files due to slow network.","severity":"Medium","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Video calls keep freezing because of slow LAN.","severity":"High","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Internal portal loads very slowly.","severity":"Medium","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Uploading documents to SharePoint takes a long time; network seems slow.","severity":"Medium","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Teams video calls are freezing constantly; suspect network slowness.","severity":"High","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"Applications hosted internally are very slow; cannot complete daily tasks.","severity":"High","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"LAN network is intermittent and slow across multiple devices.","severity":"Medium","urgency":"Today","agent":"networking_connectivity"},
+        {"text":"High latency in internal apps causing delays; need IT team to investigate network performance.","severity":"High","urgency":"Today","agent":"networking_connectivity"}
+      ]
+    }
+  },
+    "Hardware / Device Issues": {
+      "Laptop not booting / crashes": {
+        "prompts":[
+          {"text":"Laptop won’t start.","severity":"High","urgency":"Immediate","agent":"hardware_device_issues"},
+          {"text":"Blue screen after login.","severity":"High","urgency":"Immediate","agent":"hardware_device_issues"},
+          {"text":"Laptop freezes on boot.","severity":"High","urgency":"Immediate","agent":"hardware_device_issues"},
+          {"text":"Cannot power on laptop.","severity":"High","urgency":"Immediate","agent":"hardware_device_issues"},
+          {"text":"Laptop crashes randomly.","severity":"High","urgency":"Immediate","agent":"hardware_device_issues"},
+          {"text":"After pressing the power button, the laptop shows a black screen and does not boot.","severity":"High","urgency":"Immediate","agent":"hardware_device_issues"},
+          {"text":"Blue screen error during startup; cannot access desktop.","severity":"High","urgency":"Immediate","agent":"hardware_device_issues"},
+          {"text":"Laptop freezes on the Windows logo screen; tried safe mode without success.","severity":"High","urgency":"Immediate","agent":"hardware_device_issues"},
+          {"text":"Laptop restarts itself repeatedly and cannot be used for work.","severity":"Critical","urgency":"Immediate","agent":"hardware_device_issues"},
+          {"text":"System crashes with error messages, affecting daily work tasks.","severity":"High","urgency":"Today","agent":"hardware_device_issues"}
+        ]
+      },
+      "Printer/scanner not working": {
+        "prompts":[
+          {"text":"Office printer not printing.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Scanner not scanning documents.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Printer shows error 0x123.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Cannot connect to network printer.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Printer queue stuck.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Tried printing documents but printer shows offline status; urgent need for client documents.","severity":"High","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Scanner not saving scanned files to shared folder.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Printer paper jam cleared, but still not printing.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Cannot install printer driver on my laptop; need access to network printer.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Printer rejects all jobs from my computer; troubleshooting required.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"}
+        ]
+      },
+      "Peripheral issues (keyboard, mouse, headset failures)": {
+        "prompts":[
+          {"text":"Keyboard not typing.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Mouse pointer frozen.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Headset mic not working in Teams.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"External monitor not detected.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Webcam not functioning.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Headset microphone not recognized during video calls; affects client meetings.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"External monitor shows no signal when connected via HDMI.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Mouse stops responding intermittently; affects coding work.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Keyboard keys not responding; cannot complete typing tasks.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Webcam fails to start on Teams/Zoom; urgent fix needed for online meetings.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"}
+        ]
+      },
+      "Disk space alerts / low storage": {
+        "prompts":[
+          {"text":"Laptop storage almost full.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Cannot save files; disk space low.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"C: drive almost full.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Warning: low disk space.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Unable to download software due to storage.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Laptop warns about low disk space and prevents me from saving important project files.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Cannot install new applications; storage almost full on C: drive.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Disk space alerts appear frequently; need cleanup or additional storage.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Working on large datasets but laptop storage insufficient.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"},
+          {"text":"Receiving repeated low storage warnings affecting productivity; request storage expansion.","severity":"Medium","urgency":"Today","agent":"hardware_device_issues"}
+        ]
+      }
+    },
+    "Software / Applications": {
+      "Installation or upgrade of required software": {
+        "prompts":[
+          {"text":"Need to install SAP client.","severity":"Medium","urgency":"Today","agent":"software_applications"},
+          {"text":"Cannot install Outlook on my laptop.","severity":"Medium","urgency":"Today","agent":"software_applications"},
+          {"text":"Requesting upgrade to latest Java version.","severity":"Medium","urgency":"Today","agent":"software_applications"},
+          {"text":"Software installation fails with error 1603.","severity":"Medium","urgency":"Today","agent":"software_applications"},
+          {"text":"Need admin rights to install IDE.","severity":"Medium","urgency":"Today","agent":"software_applications"},
+          {"text":"Tried installing SAP GUI but it fails with unknown error; need IT assistance.","severity":"Medium","urgency":"Today","agent":"software_applications"},
+          {"text":"Cannot upgrade Adobe Acrobat; admin privileges required to proceed.","severity":"Medium","urgency":"Today","agent":"software_applications"},
+          {"text":"Installation of Timesheet software unsuccessful; request urgent support.","severity":"Medium","urgency":"Today","agent":"software_applications"},
+          {"text":"New project requires Python 3.11, unable to install due to permissions.","severity":"Medium","urgency":"Today","agent":"software_applications"},
+          {"text":"Attempted to update Jira client, but setup fails; please help.","severity":"Medium","urgency":"Today","agent":"software_applications"}
+        ]
+      },
+      "Enterprise app crashes": {
+        "prompts":[
+          {"text":"SAP crashes on login.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Outlook freezes when sending emails.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Timesheet app not responding.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"ERP client crashes intermittently.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Internal dashboard shows error 500.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"SAP GUI crashes every time I open a report; prevents work on client data.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Outlook freezes when attaching files; cannot send important emails.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Timesheet portal becomes unresponsive while saving entries.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"ERP software crashes randomly, losing unsaved data.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Internal dashboard fails to load and throws server error.","severity":"High","urgency":"Immediate","agent":"software_applications"}
+        ]
+      },
+      "License expiry or renewal requests": {
+        "prompts":[
+          {"text":"Adobe license expired.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Requesting renewal for Office 365 subscription.","severity":"High","urgency":"Today","agent":"software_applications"},
+          {"text":"SAP license needs update.","severity":"High","urgency":"Today","agent":"software_applications"},
+          {"text":"IDE license expired.","severity":"High","urgency":"Today","agent":"software_applications"},
+          {"text":"Need renewal for project management software.","severity":"High","urgency":"Today","agent":"software_applications"},
+          {"text":"Adobe Creative Cloud license has expired; need urgent renewal to continue client work.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Office 365 license shows expired; cannot access Outlook and Teams.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"SAP license needs renewal; workflows blocked until update.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"IDE license expired, preventing software development tasks.","severity":"High","urgency":"Today","agent":"software_applications"},
+          {"text":"Project management tool subscription ended; require renewal to manage tasks.","severity":"High","urgency":"Today","agent":"software_applications"}
+        ]
+      },
+      "Email client not syncing": {
+        "prompts":[
+          {"text":"Outlook not syncing emails.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Cannot receive new emails.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Sent emails not appearing in sent folder.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Calendar events not updating.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Email attachments failing to download.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Outlook is not syncing new emails from the server; request urgent fix.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Cannot receive client emails; syncing stopped without errors.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Calendar invites not updating in Outlook; causing meeting confusion.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Attachments fail to download from emails; request IT support.","severity":"High","urgency":"Immediate","agent":"software_applications"},
+          {"text":"Sent folder empty, but emails were sent; Outlook not syncing properly.","severity":"High","urgency":"Immediate","agent":"software_applications"}
+        ]
+      }
+    }
+  ,
+    "Collaboration & Productivity Tools": {
+      "Microsoft Teams / Zoom login issues": {
+        "prompts":[
+          {"text":"Cannot log in to Teams.","severity":"High","urgency":"Immediate","agent":"collaboration_productivity_tools"},
+          {"text":"Zoom login fails.","severity":"High","urgency":"Immediate","agent":"collaboration_productivity_tools"},
+          {"text":"Teams authentication error.","severity":"High","urgency":"Immediate","agent":"collaboration_productivity_tools"},
+          {"text":"Cannot join Zoom meetings.","severity":"High","urgency":"Immediate","agent":"collaboration_productivity_tools"},
+          {"text":"Teams app keeps crashing on login.","severity":"High","urgency":"Immediate","agent":"collaboration_productivity_tools"},
+          {"text":"Tried to log in to Teams multiple times, keeps giving authentication error; need access for client calls.","severity":"High","urgency":"Immediate","agent":"collaboration_productivity_tools"},
+          {"text":"Zoom app fails during login with error code 104; cannot join scheduled meetings.","severity":"High","urgency":"Immediate","agent":"collaboration_productivity_tools"},
+          {"text":"Teams shows ‘sign-in failed’; urgent access required for internal meetings.","severity":"High","urgency":"Immediate","agent":"collaboration_productivity_tools"},
+          {"text":"Cannot access Teams on desktop; mobile login works, need resolution.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Zoom client crashes immediately after login; prevents attending online client demos.","severity":"High","urgency":"Immediate","agent":"collaboration_productivity_tools"}
+        ]
+      },
+      "Shared drives / SharePoint folders not accessible": {
+        "prompts":[
+          {"text":"Cannot access SharePoint folder.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Shared drive inaccessible.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Permissions denied for project folder.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Cannot open files on team drive.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"SharePoint sync failing.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Unable to access project SharePoint folder; request read/write permissions.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Shared drive not visible on my laptop; critical files needed for work.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Cannot sync files from SharePoint to local machine; urgent fix needed.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Access denied to team drive; cannot upload project documents.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"SharePoint folder shows error 403; unable to download files for client project.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"}
+        ]
+      },
+      "Calendar sync issues": {
+        "prompts":[
+          {"text":"Outlook calendar not updating.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Meeting invites missing.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Cannot sync calendar across devices.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Recurring meetings not showing.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Time zone incorrect in calendar.","severity":"Medium","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Calendar events from manager are not syncing to my Outlook; missing client calls.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Recurring meetings disappear after update; need IT to fix calendar sync.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Cannot sync calendar across desktop and mobile devices.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Time zone mismatch causes meeting notifications at wrong times; request resolution.","severity":"Medium","urgency":"Today","agent":"collaboration_productivity_tools"},
+          {"text":"Calendar invites not received from SharePoint project calendar.","severity":"High","urgency":"Today","agent":"collaboration_productivity_tools"}
+        ]
+      }
+    },
+    "Security & Compliance": {
+      "Antivirus alerts / malware detection": {
+        "prompts":[
+          {"text":"Antivirus shows threat detected.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Malware alert on laptop.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Cannot run antivirus scan.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Virus detected in downloaded file.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"AV quarantined important file.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Antivirus detected a malware threat in a downloaded document; need IT guidance.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Laptop flagged with multiple virus alerts; cannot access project files.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Real-time protection not working; risk of malware infection.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Malware detected in email attachment; need urgent scan and cleanup.","severity":"Critical","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Antivirus quarantined essential project files; request recovery support.","severity":"High","urgency":"Immediate","agent":"security_compliance"}
+        ]
+      },
+      "Suspicious system behavior": {
+        "prompts":[
+          {"text":"Laptop behaving strangely.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Unexpected popups appearing.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"System unusually slow.","severity":"Medium","urgency":"Today","agent":"security_compliance"},
+          {"text":"Apps opening automatically.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Unauthorized access suspected.","severity":"Critical","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Laptop performance slowed drastically; suspect malware or unauthorized access.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Popups appearing in company applications; may indicate security threat.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Files disappearing or moving unexpectedly; possible security breach.","severity":"Critical","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Unauthorized login attempts detected on my account; urgent investigation required.","severity":"Critical","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"System behaving erratically after installing updates; request IT review for security risks.","severity":"High","urgency":"Today","agent":"security_compliance"}
+        ]
+      },
+      "Data compliance / policy violations": {
+        "prompts":[
+          {"text":"Accidentally sent confidential file externally.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Need to check GDPR compliance on data.","severity":"Medium","urgency":"Today","agent":"security_compliance"},
+          {"text":"Internal policy violation alert.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"File shared outside company by mistake.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Need audit report of data access.","severity":"Medium","urgency":"Today","agent":"security_compliance"},
+          {"text":"Shared a confidential client file to external email by mistake; request compliance review.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Need guidance to ensure project data meets GDPR requirements.","severity":"Medium","urgency":"Today","agent":"security_compliance"},
+          {"text":"Received policy violation alert for document handling; request IT assistance.","severity":"High","urgency":"Today","agent":"security_compliance"},
+          {"text":"File incorrectly shared outside company; want to revoke access and ensure compliance.","severity":"High","urgency":"Immediate","agent":"security_compliance"},
+          {"text":"Request audit report to verify data access logs for compliance purposes.","severity":"Medium","urgency":"Today","agent":"security_compliance"}
+        ]
+      }
+    }
+  }
+  
+

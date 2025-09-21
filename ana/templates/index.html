@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Ticket Management System{% endblock %}
+
+{% block content %}
+<style>
+    .box {
+        border-radius: 10px;
+        padding: 20px;
+        margin: 5px 0;
+        text-align: left;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    .total-tickets {
+        background-color: #ffcccc; /* Light red */
+    }
+    .open-tickets {
+        background-color: #5faedc; /* Light green */
+    }
+    .in-progress {
+        background-color: #cfe4c7; /* Light blue */
+    }
+    .critical-issues {
+        background-color: #c998b5; /* Light yellow */
+    }
+    .ticket-item {
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        min-height: 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgb(255, 255, 255);
+    }
+    .ticket-info {
+        flex-grow: 1;
+    }
+    .ticket-badges {
+        display: flex;
+        gap: 10px;
+    }
+</style>
+
+<div class="mt-4 container">
+    <h4>Ticket Overview</h4>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="box total-tickets">
+                Total Tickets
+                <div class="number">{{ total_tickets }}</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="box open-tickets">
+                Open Tickets
+                <div class="number">{{ open_tickets }}</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="box in-progress">
+                Resolved
+                <div class="number">{{ resolved_tickets }}</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="box critical-issues">
+                Critical Issues
+                <div class="number">{{ critical_tickets }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<hr>
+
+<div class="mt-4 container">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h5 style="margin: 0;">Recently Created Tickets</h5>
+        <!-- Button to trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTicketModal">
+            + Create New Ticket
+        </button>
+    </div>
+    <div class="list-group">
+        {% for ticket in recent_tickets[-5:] %}
+        <div class="ticket-item">
+            <a href="/ticket_details?id={{ ticket.id }}" style="text-decoration: none; color: #000000;">
+                <div class="ticket-info">
+                    <h5><strong>Ticket:</strong> #{{ ticket.id }}</h5>
+                    <strong>Issue:</strong> {{ ticket.query_text|truncate(50) }}<br>
+                        <strong>Status:</strong> {{ ticket.status }}
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+<!-- Modal for creating new ticket -->
+<div class="modal fade" id="newTicketModal" tabindex="-1" role="dialog" aria-labelledby="newTicketModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="max-width: 60%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newTicketModalLabel">Create a New Ticket</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="ticketForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="development_center">Development Center</label>
+                        <input type="text" class="form-control" id="development_center" name="development_center" placeholder="Enter your development center" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="query_text">User Query</label>
+                        <textarea class="form-control" id="query_text" name="query_text" rows="3" placeholder="Enter your query" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-custom">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="responseModal" tabindex="-1" role="dialog" aria-labelledby="responseModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="responseModalLabel">Classification Result</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="loader" class="loader"></div>
+                <div id="classificationResult"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="processingModal" tabindex="-1" role="dialog" aria-labelledby="processingModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="processingModalLabel">Processing</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Processing your request...
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if classification %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Show the modal with classification result
+        $('#responseModal').modal('show');
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('classificationResult').innerHTML = `{{ classification.replace('\n', '<br>') }}`;
+        setTimeout(function() {
+            window.location.href = '/ticket_details?name={{ name }}&email={{ email }}&development_center={{ development_center }}&query_text={{ query_text }}&classification={{ classification | urlencode }}';
+        }, 2000);
+    });
+</script>
+{% endif %}
+
+
+
+{% endblock %}

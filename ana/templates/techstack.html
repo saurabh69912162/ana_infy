@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Tech Stack - AI Ticketing System{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Technology Stack</h1>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Planning & Design Tools</h3>
+            <ul class="list-group mb-4">
+                <li class="list-group-item"><i class="fas fa-project-diagram"></i> Draw.io - Architecture & Flow Diagrams</li>
+                <li class="list-group-item"><i class="fas fa-sticky-note"></i> Microsoft OneNote - Documentation & Notes</li>
+                <li class="list-group-item"><i class="fas fa-paint-brush"></i> Dribbble - UI/UX Inspiration</li>
+            </ul>
+
+            <h3>Core Technologies</h3>
+            <ul class="list-group mb-4">
+                <li class="list-group-item"><i class="fab fa-python"></i> Python - Backend Programming</li>
+                <li class="list-group-item"><i class="fas fa-server"></i> Flask - Web Framework</li>
+                <li class="list-group-item"><i class="fas fa-database"></i> MySQL - Database Management</li>
+            </ul>
+
+            <h3>Frontend Technologies</h3>
+            <ul class="list-group mb-4">
+                <li class="list-group-item"><i class="fab fa-html5"></i> HTML5 - Structure</li>
+                <li class="list-group-item"><i class="fab fa-css3-alt"></i> CSS3 - Styling</li>
+                <li class="list-group-item"><i class="fab fa-js"></i> JavaScript - Client-side Logic</li>
+                <li class="list-group-item"><i class="fas fa-code"></i> Jinja2 - Template Engine</li>
+                <li class="list-group-item"><i class="fab fa-bootstrap"></i> Bootstrap - Responsive Design</li>
+            </ul>
+        </div>
+
+        <div class="col-md-6">
+            <h3>AI & Integration</h3>
+            <ul class="list-group mb-4">
+                <li class="list-group-item">
+                    <i class="fas fa-robot"></i> OpenAI API
+                    <ul class="list-unstyled ml-4">
+                        <li>- Function Calling</li>
+                        <li>- Text Completion</li>
+                        <li>- Natural Language Processing</li>
+                    </ul>
+                </li>
+                <li class="list-group-item">
+                    <i class="fas fa-chart-line"></i> AMCharts
+                    <ul class="list-unstyled ml-4">
+                        <li>- Interactive Data Visualization</li>
+                        <li>- Real-time Analytics</li>
+                        <li>- Custom Charts & Graphs</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Development Tools</h3>
+            <ul class="list-group mb-4">
+                <li class="list-group-item"><i class="fab fa-git-alt"></i> Git - Version Control</li>
+                <li class="list-group-item"><i class="fas fa-code-branch"></i> GitHub - Repository Management</li>
+                <li class="list-group-item"><i class="fas fa-terminal"></i> VS Code - Code Editor</li>
+                <li class="list-group-item"><i class="fas fa-robot"></i> GitHub Copilot - AI Code Assistant</li>
+            </ul>
+
+            <h3>Training Data</h3>
+            <ul class="list-group mb-4">
+                <li class="list-group-item">
+                    <i class="fas fa-brain"></i> ChatGPT Generated Datasets
+                    <ul class="list-unstyled ml-4">
+                        <li>- Ticket Categories</li>
+                        <li>- Sample Queries</li>
+                        <li>- Resolution Templates</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

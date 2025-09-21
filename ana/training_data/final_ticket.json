@@ -1,0 +1,20 @@
+{
+  "ticket": {
+    "user_id": "EMP12345",
+    "contact": {
+      "email": "user@company.com",
+      "phone": "+91-9876543210"
+    },
+    "category": "Access & Authentication",
+    "subcategory": "Password Reset",
+    "summary": "AD password expired and unable to login",
+    "description": "User unable to login into Active Directory as password has expired.",
+    "priority": "High",
+    "location": "Remote - Bangalore",
+    "attachments": [],
+    "category_fields": {
+      "system_name": "Active Directory",
+      "issue_type": "Password Reset"
+    }
+  }
+}

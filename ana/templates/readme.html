@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}README - AI Ticketing System{% endblock %}
+
+
+{% block content %}
+<div class="container mt-4">
+    <h1>AI Ticketing System</h1>
+    <hr>
+    <h2>Overview</h2>
+    <p>The AI Ticketing System is a web application designed to streamline the process of managing IT support tickets. It leverages AI to classify and route tickets to the appropriate agents, and provides a user-friendly interface for tracking and resolving issues.</p>
+
+    <h2>Technologies Used</h2>
+    <ul>
+        <li><strong>AMcharts</strong>: Used for creating interactive charts and visualizations in the analytics section.</li>
+        <li><strong>OpenAI API</strong>: Utilized for AI-driven ticket classification and resolution suggestions.</li>
+        <li><strong>Function Calling</strong>: Implemented to structure and manage AI responses effectively.</li>
+    </ul>
+
+    <h2>Features</h2>
+    <ul>
+        <li><strong>User Interface</strong>: Built with Flask, HTML, CSS, and JavaScript for a responsive and interactive experience.</li>
+        <li><strong>AI Classification</strong>: Uses AI to classify tickets into categories and determine severity and urgency.</li>
+        <li><strong>Category-Specific Agents</strong>: Specialized agents for different categories to provide tailored solutions.</li>
+        <li><strong>Database</strong>: SQLite database to store tickets, comments, feedback, and knowledge base entries.</li>
+        <li><strong>Analytics</strong>: AMcharts for visualizing task distribution and feedback.</li>
+        <li><strong>Feedback System</strong>: Allows users to rate ticket resolutions with emojis.</li>
+        <li><strong>Knowledge Base</strong>: Automatically updates with resolved tickets to provide a repository of solutions.</li>
+    </ul>
+
+    <h2>Training Data</h2>
+    <ul>
+        <li>The <code>/training_data</code> folder contains JSON files used for training and prompting the AI model.</li>
+        <li><strong>categories_and_subtickets.json</strong>: Provides examples and subtickets for different categories to enhance classification accuracy.</li>
+        <li><strong>final_ticket.json</strong>: Contains structured data for final ticket processing.</li>
+        <li><strong>mini_.json</strong>: A smaller dataset for quick testing and validation.</li>
+        <li>This data is used to train the AI model and generate prompts for ChatGPT, ensuring accurate and context-aware responses.</li>
+    </ul>
+
+    <h2>Setup</h2>
+    <ol>
+        <li><strong>Clone the Repository</strong>
+            <pre><code>git clone &lt;repository-url&gt;
+cd &lt;repository-directory&gt;</code></pre>
+        </li>
+        <li><strong>Create a Virtual Environment</strong>
+            <pre><code>python3 -m venv venv
+source venv/bin/activate</code></pre>
+        </li>
+        <li><strong>Install Dependencies</strong>
+            <pre><code>pip install -r requirements.txt</code></pre>
+        </li>
+        <li><strong>Initialize the Database</strong>
+            <p>Ensure the database is set up by running the application, which will automatically create the necessary tables.</p>
+        </li>
+        <li><strong>Run the Application</strong>
+            <pre><code>flask run</code></pre>
+            <p>Access the application at <code>http://localhost:5000</code>.</p>
+        </li>
+    </ol>
+
+    <h2>Usage</h2>
+    <ul>
+        <li><strong>Home Page</strong>: Submit a new ticket by providing your details and query.</li>
+        <li><strong>Ticket Details</strong>: View ticket information, add comments, and resolve tickets.</li>
+        <li><strong>All Requests</strong>: View and filter all tickets by status.</li>
+        <li><strong>Knowledge Base</strong>: Access solutions from previously resolved tickets.</li>
+        <li><strong>Analytics</strong>: View charts and statistics about ticket handling and feedback.</li>
+    </ul>
+
+    <h2>File Structure</h2>
+    <ul>
+        <li><code>app.py</code>: Main application file containing routes and logic.</li>
+        <li><code>database.py</code>: Handles database connections and operations.</li>
+        <li><code>templates/</code>: Contains HTML templates for rendering pages.</li>
+        <li><code>static/</code>: Contains static files like CSS and JavaScript.</li>
+        <li><code>requirements.txt</code>: Lists Python dependencies.</li>
+    </ul>
+</div>
+{% endblock %} 

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}All Requests - Ticket Management System{% endblock %}
+
+{% block content %}
+<style>
+    .list-group-item {
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+</style>
+
+<div class="container mt-4">
+    <h4>All Requests</h4>
+    <div class="btn-group mb-3" role="group" aria-label="Filter">
+        <button type="button" class="btn btn-outline-secondary" onclick="filterRequests('All')">All Requests</button>
+        <button type="button" class="btn btn-outline-secondary" onclick="filterRequests('Open')">Open Requests</button>
+        <button type="button" class="btn btn-outline-secondary" onclick="filterRequests('Resolved')">Resolved Requests</button>
+        <button type="button" class="btn btn-outline-secondary" onclick="filterRequests('Escalated')">Escalated Requests</button>
+    </div>
+
+    <script>
+        function filterRequests(status) {
+            const requests = document.querySelectorAll('.list-group-item');
+            requests.forEach(request => {
+                if (status === 'All' || request.classList.contains(status.toLowerCase())) {
+                    request.style.display = 'block';
+                } else {
+                    request.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+    <div class="list-group">
+        {% for request in requests %}
+        <a href="/ticket_details?id={{ request['id'] }}" class="list-group-item list-group-item-action {{ request['status']|lower }}">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Ticket #{{ request['id'] }}</h5>
+                <small>{{ request['created_at'] }}</small>
+            </div>
+            <p class="mb-1"><strong>Query:</strong> {{ request['query_text']|truncate(50) }}</p>
+            <small><strong>Status:</strong> {{ request['status'] }} | <strong>Agent:</strong> {{ request['agent_name'] }}</small>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

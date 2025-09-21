@@ -1,0 +1,277 @@
+{% extends "base.html" %}
+
+{% block title %}Ticket Details{% endblock %}
+
+{% block content %}
+<style>
+    .container {
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #f8f9fa;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    .grey {
+        color: #515151;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-9">
+        <!-- Main Content -->
+            <h3>Ticket #{{ ticket.id }}</h3>
+            <h4><span class="badge 
+            {% if ticket.status == 'Open' %}badge-info
+            {% elif ticket.status == 'Escalated' %}badge-warning
+            {% elif ticket.status == 'Resolved' %}badge-success
+            {% endif %}">{{ ticket.status }}</span></h4>
+            <hr>
+            {% if ticket.status == 'Resolved' %}
+            <div class="alert alert-success" role="alert">
+                Issue is resolved
+              </div>
+              {% endif %}
+            <br>
+            <h4 class="grey">Ticket Details</h4>
+            <div class="container">
+            <div class="mt-4">
+                <p><strong>Query:</strong> {{ ticket.query_text }}</p>
+                <hr>
+                <p><strong>Category:</strong> {{ ticket.category }}</p>
+                <p><strong>Agent:</strong>{% if 'AI AGENT' in ticket.agent_name.upper() %} <span class="badge badge-primary">AI Agent</span> {% endif %} - {{ticket.agent_name}}</p>
+                <p><strong>Created At:</strong> {{ ticket.created_at }}</p>
+            </div>
+        </div>
+{% if missing_fields %}
+        <h4>Please fill in the following mandatory fields:</h4>
+        <form method="post">
+        {% for field in missing_fields %}
+        <div class="form-group">
+        <label for="{{ field }}">{{ field.replace('_', ' ').title() }}</label>
+        <input type="text" class="form-control" id="{{ field }}" name="{{ field }}" required>
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+{% endif %}
+        
+        {% if not missing_fields %}
+    {% if ticket.category != 'Others' %}
+        <br>
+        <h4 class="grey">Resolution</h4>
+        <div class="container">
+            <div class="mt-4">
+                <p>{{ ticket.resolution | safe }}</p>
+            </div>
+        </div>
+        <br>
+        {% endif %}
+        <h4 class="grey">Comments</h4>
+        <div class="container">
+            <div class="mt-4">
+                <ul class="list-group">
+                    {% for comment in comments %}
+                    <li class="list-group-item">{{ comment['comment'] }} <small class="text-muted" style="float: right;">{{ comment['created_at'] }}</small></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% if ticket.status != 'Resolved' %}
+            <div class="mt-4">
+                <textarea class="form-control" rows="3" placeholder="Leave a comment..."></textarea>
+                <button class="btn btn-secondary mt-2" id="saveCommentButton">Save Comment</button>
+            </div>
+            {% endif %}
+        </div>
+        <br>
+    </div>
+    <div class="col-md-3" style="margin-top: 100px;">
+        <!-- Right Sidebar -->
+        <div class="sidebar2">
+            <h5 class="grey">User Information</h5>
+            <div class="box container">
+                <p><strong>Name:</strong> {{ ticket.name }}</p>
+                <p><strong>Email:</strong> {{ ticket.email }}</p>
+                <p><strong>Development Center:</strong> {{ ticket.development_center }}</p>
+            </div>
+            <br>
+            <h5 class="grey">Actions</h5>
+            <div class="box mt-3 container text-left">
+                {% if ticket.status != 'Resolved' %}
+                <button class="btn btn-success" onclick="resolveTicket({{ ticket.id }})">Mark as Resolved</button>
+                    {% if ticket.status != 'Escalated' %}
+                    <br><br>
+                    <button class="btn btn-danger" onclick="escalateIssue({{ ticket.id }})">Escalate</button>
+                    {% endif %}
+                {% else %}
+                <button class="btn btn-danger">Re-open Issue</button>
+                {% endif %}
+            </div>
+            <br>
+            <h5 class="grey">Details</h5>
+            <div class="box mt-3 container">
+                <p><strong>Created Date:</strong> {{ ticket.created_at }}</p>
+                {% if ticket.status == 'Resolved' %}
+                    <p><strong>Closing Date:</strong> {{ ticket.closing_time }}</p>
+                    <p><strong>Time Taken:</strong> {{ ticket.time_taken }} seconds</p>
+                {% else %}
+                <p><strong>ETA:</strong> Today</p>
+                {% endif %}
+            </div>
+            <br>
+            <h5 class="grey">Timeline</h5>
+            <div class="box mt-3 container">
+                <ul class="timeline">
+                    <li class="{{ 'completed' if ticket.status in ['Allocated', 'Resolved'] else '' }}">Creating a Ticket</li>
+                    <li class="{{ 'completed' if ticket.status == 'Resolved' else '' }}">Allocation</li>
+                    <li class="{{ 'completed' if ticket.status == 'Resolved' else '' }}">Resolution</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    function resolveTicket(ticketId) {
+        fetch('/resolve_ticket', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ ticket_id: ticketId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Ticket resolved!');
+                showRatingModal();
+                 // Reload the page to reflect changes
+            } else {
+                alert('Failed to resolve the ticket.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while resolving the ticket.');
+        });
+    }
+
+    function escalateIssue(ticketId) {
+        fetch('/escalate_issue', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ ticket_id: ticketId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Ticket Escalated!');
+                location.reload(); // Reload the page to reflect changes
+            } else {
+                alert('Failed to resolve the ticket.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while resolving the ticket.');
+        });
+    }
+</script> 
+
+
+    {% if  ticket.agent_name != 'To Be Assigned (IT TEAM)' and ticket.status != 'Resolved' %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            $('#closeTicketModal').modal('show');
+        }, 10000);
+    });
+    </script>
+{% endif %}
+
+<!-- Modal for Closing Ticket Prompt -->
+<div class="modal fade" id="closeTicketModal" tabindex="-1" role="dialog" aria-labelledby="closeTicketModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="closeTicketModalLabel">Are you satisfied with the solution?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>If you are satisfied with the solution, please close the ticket. Otherwise, it will remain open for further assistance.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" onclick="resolveTicket({{ ticket.id }})">Close Ticket</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Rating Ticket Resolution -->
+<div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ratingModalLabel">Rate the Ticket Resolution</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <p class="h4 mb-4">Please rate the resolution of this ticket:</p>
+                <div class="emoji-rating d-flex justify-content-center">
+                    <span class="emoji mx-3" style="font-size: 3rem; cursor: pointer;" data-value="1">😡</span>
+                    <span class="emoji mx-3" style="font-size: 3rem; cursor: pointer;" data-value="2">😟</span>
+                    <span class="emoji mx-3" style="font-size: 3rem; cursor: pointer;" data-value="3">😐</span>
+                    <span class="emoji mx-3" style="font-size: 3rem; cursor: pointer;" data-value="4">😊</span>
+                    <span class="emoji mx-3" style="font-size: 3rem; cursor: pointer;" data-value="5">😍</span>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.emoji').forEach(emoji => {
+        emoji.addEventListener('click', function() {
+            const rating = this.getAttribute('data-value');
+            const ticketId = {{ ticket.id }};
+            fetch('/submit_feedback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ ticket_id: ticketId, points: rating, feedback_text: '' })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Thank you for your feedback!');
+                    $('#ratingModal').modal('hide');
+                } else {
+                    alert('Failed to submit feedback.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while submitting feedback.');
+            });
+        });
+    });
+
+    // Show the rating modal when the user closes the ticket
+    function showRatingModal() {
+        $('#ratingModal').modal('show');
+    }
+</script>
+
+{% endblock %} 
+
