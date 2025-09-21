@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="")
 
 # Load examples from JSON file
 with open('training_data/mini_.json', 'r') as file:
