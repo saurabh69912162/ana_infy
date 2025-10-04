@@ -1,5 +1,5 @@
-# Hybrid AI ITSM framework
-IT Ticket Management System (ITSM)
+# Hybrid AI ITMS framework
+IT Ticket Management System (ITMS)
 
 ## Overview
 The AI Ticketing System is a web application designed to streamline the process of managing IT support tickets. It leverages AI to classify and route tickets to the appropriate agents, and provides a user-friendly interface for tracking and resolving issues.
